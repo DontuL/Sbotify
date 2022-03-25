@@ -17,13 +17,30 @@ export class SpotifyService {
     const headers = new HttpHeaders({Authorization: environment.oauthToken});
 ;
 
+
     let obsTracks = this.http.get(url, { headers });
     return obsTracks;
     
  //Ritorno un observable ai componenti che richiedono il servizio
   }
+  searchArtist(query: string) {
+    const url = `https://api.spotify.com/v1/search?q=${query}&type=artist`;
+    const headers = new HttpHeaders({Authorization: environment.oauthToken});
+  ;
+  let obsArtist = this.http.get(url, { headers });
+  return obsArtist;
+  
+//Ritorno un observable ai componenti che richiedono il servizio
+}
   getTrack(id: string) {
     const url = `https://api.spotify.com/v1/tracks/${id}`;
+    const headers = new HttpHeaders({Authorization: environment.oauthToken});
+;
+    
+    return this.http.get(url, { headers });
+  }
+  getArtist(id: string) {
+    const url = `https://api.spotify.com/v1/artists/${id}`;
     const headers = new HttpHeaders({Authorization: environment.oauthToken});
 ;
     
